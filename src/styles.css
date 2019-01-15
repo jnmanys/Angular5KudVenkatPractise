@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.employee-image {
+    width: 200px;
+    height: 200px;
+}
+/*Form validation style*/
+.form-group.has-error {
+    color: red;
+}
+.form-group.has-error .form-control {
+    border: 1px solid red;
+}

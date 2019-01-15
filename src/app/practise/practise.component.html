@@ -1,0 +1,55 @@
+<practise-table-component></practise-table-component>
+<form #practiseForm="ngForm" (ngSubmit)="practiseForm.valid && handlePractiseFormSubmit(practiseForm)">
+
+    <div class="form-group" [class.has-error]="firstNameControl.invalid && (firstNameControl.touched || practiseForm.submitted)">
+        <label for="firstName">First Name</label>
+        <input class="form-control" required type="text" id="firstName" name="firstName" [(ngModel)]="firstName" #firstNameControl="ngModel" />
+        <span *ngIf="firstNameControl.errors?.required && (firstNameControl.touched || practiseForm.submitted)">Firstname is required</span>
+    </div>
+
+    <div class="form-group" [class.has-error]="departmentControl.invalid && (departmentControl.touched || practiseForm.submitted)">
+        <label for="department">Department</label>
+        <select class="form-control" required id="department" name="department" [(ngModel)]="department" #departmentControl="ngModel">
+            <option [ngValue]="null">Select department</option>
+            <option *ngFor="let dept of departments" [ngValue]="dept.id">{{ dept.name }}</option>
+        </select>
+        <span *ngIf="departmentControl.errors?.required && (departmentControl.touched || practiseForm.submitted)">Department is required</span>
+    </div>
+
+    <div class="form-group" [class.has-error]="emailControl.invalid && (emailControl.touched || practiseForm.submitted)">
+        <label for="email">Email</label>
+        <input class="form-control" required type="text" id="email" name="email" [(ngModel)]="email" #emailControl="ngModel" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" />
+        <span *ngIf="emailControl.errors?.required && (emailControl.touched || practiseForm.submitted)">Email is required</span>
+        <span *ngIf="emailControl.errors?.pattern && (emailControl.touched || practiseForm.submitted)">Please enter valid email</span>
+    </div>
+
+    <div class="form-group" [class.has-error]="radioControl.invalid && (radioControl.touched || practiseForm.submitted)">
+        <label>Gender</label>
+        <div class="form-control">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" required type="radio" value="male" name="gender" [(ngModel)]="gender" #radioControl="ngModel" />
+                <label for="radio-male">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" required type="radio" value="female" name="gender" [(ngModel)]="gender" #radioControl="ngModel" />
+                <label for="radio-female">Female</label>
+            </div>
+        </div>
+        <span *ngIf="radioControl.errors?.required && (radioControl.touched || practiseForm.submitted)">Please select any option</span>
+    </div>
+
+    <div class="form-group" [class.has-error]="checkboxControl.invalid && (checkboxControl.touched || practiseForm.submitted)">
+        <label>isActive</label>
+        <div class="form-control">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" required type="checkbox" id="isActive" value="isActive" name="isActive" [(ngModel)]="isActive" #checkboxControl="ngModel" />
+                <label for="isActive">isActive</label>
+            </div>
+        </div>
+        <span *ngIf="checkboxControl.errors?.required && (checkboxControl.touched || practiseForm.submitted)">Please select the option</span>
+    </div>
+
+    <!-- <button class="btn btn-primary" type="submit" [disabled]="practiseForm.invalid">Submit</button> -->
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="button" (click)="practiseForm.reset()">Reset</button>
+</form>

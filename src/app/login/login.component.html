@@ -1,0 +1,15 @@
+<form #loginForm="ngForm" (ngSubmit)="loginForm.valid && submitLogin(loginForm.value)">
+    <div class="form-group" [class.has-error]="emailControl.invalid && (emailControl.touched || loginForm.submitted)">
+        <label for="email">Email*</label>
+        <input class="form-control" type="text" id="email" name="email" [(ngModel)]="email" #emailControl="ngModel" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" />
+        <span *ngIf="emailControl.errors?.required && (emailControl.touched || loginForm.submitted)">Email is required</span>
+        <span *ngIf="emailControl.errors?.pattern && (emailControl.touched || loginForm.submitted)">Email is invalid</span>
+    </div>
+    <div class="form-group" [class.has-error]="passwordControl.invalid && (passwordControl.touched || loginForm.submitted)">
+        <label for="password">Password*</label>
+        <input class="form-control" type="password" id="password" name="password" [(ngModel)]="password" #passwordControl="ngModel" required />
+        <span *ngIf="passwordControl.errors?.required && (passwordControl.touched || loginForm.submitted)">Password is required</span>
+    </div>
+    <button type="button" class="btn btn-outline-secondary mr-2" (click)="loginForm.reset()">Reset</button>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+</form>

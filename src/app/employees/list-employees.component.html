@@ -1,0 +1,37 @@
+<!-- when notify function has single data from child to parent component via output property
+{{outputData}} -->
+<!-- when notify function has whole employee object from child to parent component via output property
+"?" is used as safe operator as outputData is null on initial page load. Gets data on click "handleClick()" function. 
+<div *ngIf="outputData">
+  {{outputData?.name + " " + outputData?.gender}}
+</div>
+<div *ngFor="let employee of employees">
+  <app-display-employee [employee]="employee" (notify)=handleNotify($event)></app-display-employee>
+</div>-->
+
+
+<!-- Template reference variable to call child components properties/pass data from child to parent component -->
+<!-- <h1 #h1Variable></h1>
+<div *ngFor="let employee of employees">
+  <div (click)="h1Variable.innerHTML = childComponentTemplateReferenceVariable.employee.name +' '+ childComponentTemplateReferenceVariable.employee.gender">
+    <app-display-employee [employee]="employee" #childComponentTemplateReferenceVariable></app-display-employee>
+  </div>
+</div> -->
+<!-- Template reference variable to call child components method/pass data from child to parent component -->
+<!-- <h1 #h1Variable></h1>
+<div *ngFor="let employee of employees">
+  <div (click)="h1Variable.innerHTML = childComponentTemplateReferenceVariable.getNameAndGender()">
+    <app-display-employee [employee]="employee" #childComponentTemplateReferenceVariable></app-display-employee>
+  </div>
+</div> -->
+
+<input type="text" placeholder="Search by name" [(ngModel)]="searchTerm"/>
+<div *ngFor="let employee of employees">
+  <!-- viewEmployeeDetails() Show details on click of div -->
+  <div (click)="viewEmployeeDetails(employee.id)">
+    <app-display-employee [employee]="employee"></app-display-employee>
+  </div>
+</div>
+<!-- Show one employee at a time and to check input change detection (Uncomment below code to see the effect)
+<button class="btn btn-primary" (click)="nextEmployee()">Show next Employee</button>
+<app-display-employee [employee]="displayCurrentEmployee"></app-display-employee> -->

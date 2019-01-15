@@ -1,0 +1,19 @@
+<input type="text" [(ngModel)]="searchText" name="searchText" />
+<table class="table table-border">
+    <thead>
+        <th>Firstname</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Gender</th>
+        <th>isActive</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employeeList | practiseSearchTable : searchText">
+            <td>{{ employee.firstName }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.gender }}</td>
+            <td>{{ employee.isActive }}</td>
+        </tr>
+    </tbody>
+</table>
